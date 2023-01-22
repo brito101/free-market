@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 import 'package:app_ml/widgets/app_bar_search.dart';
+import 'package:app_ml/widgets/app_menu_drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +31,7 @@ class _HomeMyAppState extends State<HomeMyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(child: AppMenuDrawer()),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
