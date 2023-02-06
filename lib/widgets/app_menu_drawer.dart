@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:app_ml/pages/page01.dart';
+import 'package:app_ml/pages/page02.dart';
+
 class AppMenuDrawer extends StatelessWidget {
   const AppMenuDrawer({super.key});
 
@@ -45,30 +48,58 @@ class AppMenuDrawer extends StatelessWidget {
                         ))
                   ],
                 ))),
-        _itemDrawer(Icon(Icons.home), "Home"),
-        _itemDrawer(Icon(Icons.access_time_filled), "Page 02"),
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.home), text: "Home", badge: ''),
+        _itemDrawer(context, Page02(),
+            icon: Icon(Icons.access_time_filled), text: "Page 02", badge: '5'),
         Divider(color: Colors.grey),
-        _itemDrawer(Icon(Icons.backpack_rounded), "Page 03"),
-        _itemDrawer(Icon(Icons.cabin_sharp), "Page 04"),
-        _itemDrawer(Icon(Icons.dangerous), "Page 05"),
-        _itemDrawer(Icon(Icons.earbuds_battery_outlined), "Page 06"),
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.backpack_rounded), text: "Page 03", badge: ''),
+        _itemDrawer(context, Page02(),
+            icon: Icon(Icons.cabin_sharp), text: "Page 04", badge: ''),
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.dangerous), text: "Page 05", badge: ''),
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.earbuds_battery_outlined),
+            text: "Page 06",
+            badge: ''),
         Divider(color: Colors.grey),
-        _itemDrawer(Icon(Icons.exit_to_app), "Sair"),
+        _itemDrawer(context, Page02(),
+            icon: Icon(Icons.exit_to_app), text: "Sair", badge: ''),
       ],
     );
   }
 
   Widget _itemDrawer(
-    Icon icon,
-    String text,
-  ) {
+    context,
+    page, {
+    required Icon icon,
+    required String text,
+    required String badge,
+  }) {
     return ListTile(
       leading: IconTheme(data: IconThemeData(color: Colors.black), child: icon),
       title: Text(
         text,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () {},
+      trailing: Container(
+        decoration: BoxDecoration(
+            color: Colors.black, borderRadius: BorderRadius.circular(40.0)),
+        child: badge != ''
+            ? Padding(
+                padding: EdgeInsets.fromLTRB(6.0, 2.0, 6.0, 2.0),
+                child: Text(
+                  badge,
+                  style: TextStyle(
+                      backgroundColor: Colors.black, color: Colors.white),
+                ),
+              )
+            : Text(''),
+      ),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+      },
     );
   }
 }

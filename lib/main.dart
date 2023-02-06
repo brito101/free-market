@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 import 'package:app_ml/widgets/app_bar_search.dart';
 import 'package:app_ml/widgets/app_menu_drawer.dart';
+import 'package:app_ml/pages/home.dart';
+import 'package:app_ml/pages/cart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,16 +43,19 @@ class _HomeMyAppState extends State<HomeMyApp> {
         ),
         backgroundColor: Color.fromRGBO(255, 241, 89, 1),
         actions: <Widget>[
-          IconButton(onPressed: () => {}, icon: Icon(Icons.shopping_cart)),
+          IconButton(
+              onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Cart()))
+                  },
+              icon: Icon(Icons.shopping_cart)),
           IconButton(
               onPressed: () =>
                   {showSearch(context: context, delegate: AppSearchBar())},
               icon: Icon(Icons.search))
         ],
       ),
-      body: Center(
-        child: Text('Home'),
-      ),
+      body: Home(),
     );
   }
 }
